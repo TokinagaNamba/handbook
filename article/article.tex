@@ -1,14 +1,31 @@
+%============= macro start =============%
 \documentclass[a4paper,10pt,oneside,openany]{jsbook}
 
-\usepackage{amsmath,amssymb}
-\usepackage{bm}
-\usepackage{graphicx}
-\usepackage{ascmac}
-\usepackage{makeidx}
-\usepackage{titlesec}
-\usepackage{picture}
-\usepackage[usenames]{color}
-\usepackage{listings,jlisting} %ソースコードを記述する際に使う
+%% packages %% 
+\usepackage{amsmath,amssymb} 		% ams仕様の数学記号を用いる
+\usepackage{bm}				   		% ベクトルの記述に用いる
+\usepackage[dvipdfmx]{graphicx}		% 画像の表示
+\usepackage{titlesec}					% 章節などの大きさを変更
+\usepackage[usenames]{color}			% 色の変更
+\usepackage{listings,jlisting} 			% ソースコードを記述する際に使う
+\usepackage{ulem}						% いろいろな下線を書く
+%\usepackage{ascmac}				% 複数行にわたる文章を囲む
+%\usepackage{makeidx}				% 索引の作成
+%\usepackage{picture}				% 作画用
+
+%% マージンの設定 %%
+\setlength{\textwidth}{\fullwidth}
+\setlength{\textheight}{44\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\voffset}{-0.6in}
+
+%% 数式番号の表示に関わる設定 %%
+\makeatletter
+  \renewcommand{\theequation}{\arabic{chapter}.\arabic{section}.\arabic{equation}}
+  \@addtoreset{equation}{section}
+\makeatother
+
+%% ソースコード表示のデザインに関わる設定 %%
 \lstset{
   language={C},
   basicstyle={\small},
@@ -28,28 +45,14 @@
   numbersep=1zw,
   lineskip=-0.5ex
 }
-
-%\usepackage[usenames,divpsnames]{xcolor}                                                                                                                                                                                                                                                                                                                              
-%
-\makeindex
-%
-\setlength{\textwidth}{\fullwidth}
-\setlength{\textheight}{44\baselineskip}
-\addtolength{\textheight}{\topskip}
-\setlength{\voffset}{-0.6in}
-%
-\title{{\Huge \textbf{数値計算/シミュレーションハンドブック}}\\ {\small Ver. 1.0.0}}
-\author{勉強会参加メンバー}
-\date{\today}
-
-
-% colors                                                                                                                                                                                                                                                                                                                                                               
+%% 色の設定 %%                                                                                                                                                                                                                                                                                                                                                               
 \definecolor{teal}{RGB}{0,128,128}
 \definecolor{powderblue}{RGB}{176,224,230}
 \definecolor{darkslateblue}{RGB}{72,61,139}
 \definecolor{darkslategray}{RGB}{47,79,79}
 \definecolor{lightcyan}{RGB}{224,255,255}
 
+%% ヘッダ・章・節のデザインに関わる設定 %%
 % chapter                                                                                                                                                                                                                                                                                                                                                              
 %\titleformat{\chapter}[block]
 %{}{}{0pt}{
@@ -57,7 +60,6 @@
 %}[
 %  \hrule \Large{\filleft 第 \thechapter 章}
 %]
-
 % section                                                                                                                                                                                                                                                                                                                                                              
 \titleformat{\section}[block]
 {}{}{0pt}
@@ -74,7 +76,6 @@
 \\
 \vspace{-50pt}
 ]
-
 % subsection                                                                                                                                                                                                                                                                                                                                                           
 \titleformat{\subsection}[block]
 {}{}{0pt}
@@ -92,7 +93,24 @@
 \vspace{-30pt}
 ]
 
+%% フロントページ %%
+\title{{\Huge \textbf{数値計算/シミュレーションハンドブック}}\\ {\small Ver. 1.0.0}}
+\author{勉強会参加メンバー}
+\date{\today}
+
+%% 索引の作成 %%
+%\makeindex
+
+%% 記号の定義 %%
+\DeclareMathOperator{\divergence}{\mathrm{div}\,}  %texでは\divは割算の記号
+\DeclareMathOperator{\grad}{\mathrm{grad}\,}
+\DeclareMathOperator{\rot}{\mathrm{rot}\,}
+
+%============= macro end =============%
+
+
 \begin{document}
+
 \maketitle
 \frontmatter
 \tableofcontents
@@ -106,10 +124,6 @@
 \input{pde}
 \input{montecarlo}
 \input{automaton}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\printindex
+%\printindex			%% index %%
 
 \end{document}

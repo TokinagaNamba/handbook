@@ -1,91 +1,117 @@
 \chapter{偏微分方程式の差分法}
+%% abstract %%
 \begin{abstract}
-もっとも基礎的な数値スキームである有限差分法(Finite Difference Method; FDM)を用いて，いくつかの有名な偏微分方程式を計算する．
+もっとも基礎的な数値スキームである有限差分法(Finite Difference Method; FDM)を用いて，いくつかの有名な線形偏微分方程式を計算する．
 \end{abstract}
 
-\section{移流方程式}
-線形の(スカラー)移流方程式\footnote{[English?]}は
-\begin{equation}
-\partial_t u+\nu\cdot\nabla u=f\quad\text{in $(0,\infty)\times\Omega$}
-\end{equation}
-によって記述される．
-ここで，$u:\Omega\to\mathbb{R}$は未知関数，$\nu\in\mathbb{R}^d$はゼロでない定数ベクトルであり，$f=f(t,x):(0,\infty)\times\Omega\to\mathbb{R}$は既知の関数ある．もし$\Omega=\mathbb{R}^d$ならば，解は
-$$
-u(t,x)=u(0,x-t\nu)+\int_0^t f(s,x+(s-t)\nu)ds\quad(x\in\mathbb{R}^d,t\ge0)
-$$
-とかける(\cite[Section 2.1.2]{evans})
 
-\subsection{離散化}
-
-
+%% Poisson %%
 \section{Poisson方程式}
+線形のPoisson方程式は
+\begin{equation}
+\label{e:poisson}
+-\Delta u(x)=f(x)\quad(x\in\Omega)
+\end{equation}
+と記述される．
+
+%
+%\subsection{Helmholtz方程式}
+%Helmholtz方程式
+%\begin{equation}
+%\label{e:helmholtz}
+%-\Delta u(x)=\lambda u(x)\quad(x\in\Omega)
+%\end{equation}
 
 
 
-
-
+%% heat %%
 \section{熱方程式}
-線形熱方程式の境界値問題は
+線形の熱方程式は
+\begin{equation}
+\label{e:heat}
+\partial_t u(t,x)-c\Delta u(t,x)=f(t,x)\quad(t>0,\ x\in\Omega)
+\end{equation}
+と記述される．ここで，$\Omega$は$\mathbb{R}^d$の単連結な領域であり，$c>0$は拡散係数(または粘性係数)と呼ばれる(今回は)定数である．
 
-
-以下の記号を用いる．
-\begin{itemize}
-\item[-] $\delta \ast$ ($\ast=t,x,y$)：時間及び空間刻み幅
-\item[-] $(t_n ,x_i ,y_j):=(n \delta t,i \delta x,j \delta y)$, ($n,i,j=0,1,2,\cdots$)：時空間の格子点
-\item[-] $u^{n}_{i,j}:=u(t_n, x_i, y_j)$：時空間の格子点上での未知数の値
-\end{itemize}
 
 \subsection{ 1次元の問題}
-1次元の線形熱方程式に対する周期境界値問題を考える:
+ここでは，$\Omega=(0,1)$とし
 \begin{equation}
-\label{e:heat1d}
-	\begin{cases}
-		u_t(t,x)-cu_{xx}(t,x)=f(t,x)\quad&(t>0,\ 0<x<1)\\
-		u(0,x)=g(x)\quad&(0\le x\le 1)\\
-		u(t,0)=u(t,1)\quad&(t\ge0).
-	\end{cases}
+u(0,x)=g(x)\quad(0\le x\le1)
 \end{equation}
+及びDirichlet境界条件
+\begin{equation}
+u(t,0)=a(t),\quad u(t,1)=b(t)\quad(t\ge0)
+\end{equation}
+を仮定する．
+ここで，$g:[0,1]\to\mathbb{R}$及び$a,b:[0,\infty)\to\mathbb{R}$は与えられた関数で，両立条件として$g(0)=a(0)$と$g(1)=b(0)$を満たすと仮定する．
 
 \subsubsection{陽解法}
-内部の方程式は，
-$$
-\frac{u^{n+1}_{i}-u^{n}_{i}}{\delta t}-c\frac{u^{n}_{i+1}-2u^{n}_{i}+u^{n}_{i-1}}{(\delta x)^{2}}=0
-$$
-すなわち，
+時間分割数を$N_t$で空間分割数を$N_x$とする．
+
+内部の方程式を，空間に関して\uwave{2階中心差分}，時間に関して\uwave{前進差分}による近似を行うと
+\begin{equation}
+\label{e:heat1d}
+\frac{u^{n+1}_{i}-u^{n}_{i}}{h_t}-c\frac{u^{n}_{i+1}-2u^{n}_{i}+u^{n}_{i-1}}{h_x^{2}}=f_i^n
+\end{equation}
+を得る．ただし，$u_i^n:=u(nh_t,ih_x)$かつ$f_i^n:=f(nh_t,ih_x)$としている．(離散)方程式\eqref{e:heat1d}は
 $$
 u^{n+1}_{i}=\lambda u^{n}_{i+1}+(1-2\lambda)u^{n}_{i}+\lambda u^{n}_{i-1}
 $$
-と分解される．ここで，$\lambda:=c\delta t/(\delta x)^{2}$.
+と書き換えられる．ここで，$\lambda:=ch_t/h_x^{2}$である．
 
 
-\subsection{ 2次元の問題}
+\subsubsection{陰解法}
+
+
+\subsection{2次元の問題}
 
 
 
-\section{波動方程式}
-以下の記号を用いる．
+\subsection{問題}
+すぐに思い浮かぶ問題としては例えば次がある．
 \begin{itemize}
-\item[-] $\delta \ast$ ($\ast=t,x,y$)：時間及び空間刻み幅
-\item[-] $(t_n ,x_i ,y_j):=(n \delta t,i \delta x,j \delta y)$, ($n,i,j=0,1,2,\cdots$)：時空間の格子点
-\item[-] $u^{n}_{i,j}:=u(t_n, x_i, y_j)$：時空間の格子点上での未知数の値
-\item[-]  
+\item Neumann境界条件を課した場合はどうなるか．
+\item 拡散係数が定数でない場合，すなわち
+$$
+u_t(t,x)-\divergence(c(t,x)\nabla u(t,x))=f(t,x)\quad(t>0,\ x\in\Omega)
+$$
+の場合はどうなるか．
 \end{itemize}
 
-\subsection{ 1次元の問題}
-次の波動方程式に対するDirichlet境界値問題(固定境界値問題)を数値計算することを考える．
+
+
+
+
+
+
+%% wave %%
+\section{波動方程式}
+線形の波動方程式は
 \begin{equation}
-\label{e:wave1d}
-	\begin{cases}
-		\partial_{tt}u(t,x)-c^{2}\partial_{xx}u(t,x)=0\quad&\text{for $(t,x)\in(0,\infty)\times(0,1)$,}\\
-		u(0,x)=\phi(x),\quad \partial_{t}u(0,x)=\psi(x)\quad&\text{for $x\in[0,1]$,}\\
-		u(t,0)=u(t,1)=0\quad&\text{for $t\in[0,\infty)$.}
-	\end{cases}
+\label{e:wave}
+u_{tt}u(t,x)-c^2\Delta u(t,x)=f(t,x)\quad(t>0,\ x\in\Omega)
 \end{equation}
+と記述される．
+
+
+\subsection{ 1次元の問題}
+初期条件として
+\begin{equation}
+\label{e:waveinitial}
+u(0,x)=g_1(x),\quad u_t(0,x)=g_2(x)\quad(0\le x\le 1)
+\end{equation}
+及びDirichlet境界条件
+\begin{equation}
+\label{e:wave1ddirichlet}
+u(t,0)=a(t),\quad u(t,1)=b(t)\quad(t\ge0)
+\end{equation}
+を仮定する．
 
 \subsubsection{陽解法}
 内部の方程式は，
 $$
-\frac{u^{n+1}_{i}-2u^{n}_{i}+u^{n-1}_{i}}{(\delta t)^{2}}-c^{2}\frac{u^{n}_{i+1}-2u^{n}_{i}+u^{n}_{i-1}}{(\delta x)^{2}}=0
+\frac{u^{n+1}_{i}-2u^{n}_{i}+u^{n-1}_{i}}{(\delta t)^{2}}-c^{2}\frac{u^{n}_{i+1}-2u^{n}_{i}+u^{n}_{i-1}}{(\delta x)^{2}}=f
 $$
 すなわち，
 $$
@@ -104,17 +130,15 @@ $$
 で決まる．ここで，$\Phi_{i}:=\phi(x_i)$及び$\Psi_{i}:=\psi(x_i)$である．なお，境界条件は$u^{n}_{0}=u^{n}_{N}=0$で決まる．
 
 \subsection{2次元の問題}
-正方領域上の波動方程式に対するDirichlet境界値問題(固定境界値問題)を数値計算することを考える．
+正方領域$\Omega=(0,1)\times(0,1)$上の波動方程式\eqref{e:wave}-\eqref{e:waveinitial}に対するDirichlet境界値問題(固定境界値問題)
 \begin{equation}
-\label{e:wave2d}
-	\begin{cases}
-		\partial_{tt}u(t,x,y)-c^{2}\Delta u(t,x,y)=0\quad&\text{for $(t,x,y)\in(0,\infty)\times(0,1)\times(0,1)$,}\\
-		u(0,x,y)=\phi(x,y),\quad \partial_{t}u(0,x,y)=\psi(x,y)\quad&\text{for $(x,y)\in[0,1]\times[0,1]$,}\\
-		u(t,x,0)=u(t,0,y)=0\quad&\text{for $(t,x,y)\in[0,\infty)\times[0,1]\times[0,1]$.}
-	\end{cases}
+\label{e:wavedirichlet}
+u(t,x)=a(t,x)\quad(t\ge0,\ x\in\partial\Omega)
 \end{equation}
+を考える．
 
-\subsection{陽解法}
+
+\subsubsection{陽解法}
 
 
 内部の方程式は
@@ -126,13 +150,60 @@ $$
 f
 $$
 
+\subsection{問題}
+すぐに思い浮かぶ問題としては例えば次がある．
+\begin{itemize}
+\item Neumann境界条件を課した場合はどうなるか．
+\item 拡散係数が定数でない場合，すなわち
+$$
+u_{tt}(t,x)-\divergence(c(t,x)\nabla u(t,x))=f(t,x)\quad(t>0,\ x\in\Omega)
+$$
+の場合はどうなるか．
+\end{itemize}
+
+
+%% advection %%
+\section{移流方程式}
+線形の(スカラー)移流方程式\footnote{advection equation}は
+\begin{equation}
+\label{e:advection}
+\partial_t u(t,x)+\nu\cdot\nabla u(t,x)=f(t,x)\quad(t>0,\ x\in\Omega)
+\end{equation}
+によって記述される．
+ここで，$u:\Omega\to\mathbb{R}$は未知関数，$\nu\in\mathbb{R}^d$はゼロでない定数ベクトルであり，$f=f(t,x):(0,\infty)\times\Omega\to\mathbb{R}$は既知の関数ある．もし$\Omega=\mathbb{R}^d$ならば，解は
+$$
+u(t,x)=u(0,x-t\nu)+\int_0^t f(s,x+(s-t)\nu)ds\quad(x\in\mathbb{R}^d,t\ge0)
+$$
+とかける(\cite[Section 2.1.2]{evans})
+
+\subsection{離散化}
 
 
 
-\section{いくつかの応用}
-\subsection{熱移流方程式}
-\subsection{分散波動方程式}
 
+\subsection{移流拡散方程式}
+前々節と合わせることで，線形の移流拡散方程式\footnote{advection diffusion equation}
+\begin{equation}
+\label{e:advectiondiffusion}
+u_t(t,x)-c\Delta u(t,x)+\nu\cdot\nabla u(t,x)=f(t,x)\quad(t>0,\ x\in\Omega)
+\end{equation}
+の計算は可能である．
+
+\subsection{問題}
+すぐに思い浮かぶ問題としては例えば次がある．
+\begin{itemize}
+\item Neumann境界条件を課した場合はどうなるか．
+\item \eqref{e:advection}において移流係数が定数でない場合\footnote{Liouville方程式と呼ばれることがあるようだ．}，すなわち
+$$
+u_t(t,x)+\nabla(\nu(t,x) u(t,x))=f(t,x)\quad(t>0,\ x\in\Omega)
+$$
+の場合はどうなるか．ただし，$\nu$は既知のスカラー値関数である．
+\item \eqref{e:advectiondiffusion}において移流係数または/及び拡散係数が定数でない場合\footnote{Fokker-Plank方程式と呼ばれる．}，すなわち
+$$
+u_t(t,x)-\divergence(c(t,x)\nabla u(t,x))+\nabla(\nu(t,x)u(t,x))=f(t,x)\quad(t>0,\ x\in\Omega)
+$$
+の場合はどうなるか．ただし，$\nu$は既知のスカラー値関数である．
+\end{itemize}
 
 
 
