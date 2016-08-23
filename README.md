@@ -1,5 +1,5 @@
-handbook
-========
+Repositry Name: handbook
+Folders: article(tex files), programmingcodes(source codes)
 
-##共同編集者
-*難波時永(D3,代表者)
+##Collaborators(Add your name before you modify files.)
+*Tokinaga Namba(D3,owner)
