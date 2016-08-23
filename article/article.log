@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.6-141210-2.6 (utf8.euc) (TeX Live 2015) (preloaded format=platex 2015.10.1)  22 AUG 2016 01:38
+This is e-pTeX, Version 3.14159265-p3.6-141210-2.6 (utf8.euc) (TeX Live 2015) (preloaded format=platex 2015.10.1)  23 AUG 2016 23:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -371,44 +371,48 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 34.
  [2
 
-]) (./ode.tex
-[3]
+])
+(./linear.tex [3]
 第2章
-) (./fdm_pde.tex [4
+) (./ode.tex [4
 
 ]
 第3章
-[5
+) (./fdm_pde.tex [5
+
+]
+第4章
+[6
 
 ]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
- [6] [7] [8]) (./fem_pde.tex [9
-
-]
-第4章
-) (./pde.tex [10
+ [7] [8] [9]) (./fem_pde.tex [10
 
 ]
 第5章
-) (./montecarlo.tex [11
+) (./pde.tex [11
 
 ]
 第6章
-) (./automaton.tex [12
+) (./montecarlo.tex [12
 
 ]
 第7章
-) [13
+) (./automaton.tex [13
+
+]
+第8章
+) [14
 
 ] (./article.aux) ) 
 Here is how much of TeX's memory you used:
- 3893 strings out of 493777
- 50864 string characters out of 6151334
- 186975 words of memory out of 5000000
+ 3896 strings out of 493777
+ 50892 string characters out of 6151334
+ 187975 words of memory out of 5000000
  7290 multiletter control sequences out of 15000+600000
  29589 words of font info for 131 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  28i,9n,49p,375b,1712s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on article.dvi (15 pages, 35628 bytes).
+Output written on article.dvi (16 pages, 37828 bytes).
