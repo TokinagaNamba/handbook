@@ -4,9 +4,16 @@
 ### Examples
 
 ```
+$ perl MacroText.pm '\say{Hello, world!}'
+-:1:1:Message: message Hello, world!
+```
+
+```
 $ perl MacroText.pm '\@setl{a}{1 2}\join{:}{\map{\add{\_}{2}}{\a}}'
 3:4
 ```
+
+And see `test.txt`.
 
 ### License
 
