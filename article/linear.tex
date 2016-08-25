@@ -1,6 +1,25 @@
-\chapter{線形方程式}
+\chapter{線型方程式}
+
 
 \section{線形方程式の解法の種類}
+線型方程式
+\begin{equation}
+\label{e:linearequation}
+	\left[\begin{array}{cccc}
+	a_{11} & a_{12} & \cdots & a_{1n}\\
+	a_{21} & a_{22} & \cdots & a_{2n}\\
+	\vdots & \vdots & \ddots & \vdots\\
+	a_{n1} & a_{n2} & \cdots & a_{nn}
+	\end{array}\right]
+	\left[\begin{array}{c}
+	x_1 \\ x_2 \\ \vdots \\ x_n
+	\end{array}\right]=
+	\left[\begin{array}{c}
+	b_1 \\ b_2 \\ \vdots \\ b_n
+	\end{array}\right]\quad(\text{簡潔に$\bm{A}\bm{x}=\bm{b}$})
+\end{equation}
+を計算機を使って解くことを考える．
+
 \begin{itemize}
 \item[1] 直接法
 	\begin{itemize}
@@ -11,9 +30,9 @@
 	\begin{itemize}
 	\item 定常法
 		\begin{itemize}	
-		\item[i] SOR法 (Successive Over-Relaxation: 逐次加速緩和法)
+		\item[i] Jacobi法
 		\item[ii] Gauss-Seidel法
-		\item[iii] Jacobi法
+		\item[iii] SOR法 (Successive Over-Relaxation: 逐次加速緩和法)
 		\end{itemize}
 	\item 非定常法
 		\begin{itemize}
@@ -25,5 +44,37 @@
 	\end{itemize}
 \end{itemize}
 
+本章では，これらの解法アルゴリズムの紹介をする．
+
+\section{直接法}
+\subsection{Gaussの消去法}
+
+\subsection{LU分解}
+
+\section{反復法}
+直接法では，計算量が多い上に，そもそも計算ができない場合がある．
+そこで反復法を用いる．
+反復法は，初期値$\bm{x}^{(0)}$から始めて繰り返し計算を行うことで解へ収束させていく手法である．
+
+\subsection{Jacobi法}
+\begin{equation}
+\label{e:jacobi}
+x_i^{(k+1)}=\frac{1}{a_{ii}}\left(b_i-\sum_{j=1}^{i-1} a_{ij}x_j^{(k)}-\sum_{j=i+1}^n a_{ij}x_j^{(k)}\right).
+\end{equation}
 
 
+\subsection{Gauss-Seidel法}
+\begin{equation}
+\label{e:gaussseidel}
+x_i^{(k+1)}=\frac{1}{a_{ii}}\left(b_i-\sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)}-\sum_{j=i+1}^n a_{ij}x_j^{(k)}\right).
+\end{equation}
+
+
+\subsection{SOR法}
+\begin{equation}
+\label{e:sor}
+x_i^{(k+1)}=x_i^{(k)}+\frac{\omega}{a_{ii}}\left(b_i-\sum_{j=1}^{i-1}a_{ij}x_j^{(k+1)}-\sum_{j=i}^n a_{ij}x_j^{(k)}\right)
+\end{equation}
+
+
+\subsection{Krylov部分空間法}

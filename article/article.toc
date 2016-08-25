@@ -1,39 +1,53 @@
-\contentsline {chapter}{\numberline {第1章}本稿に関して}{2}
-\contentsline {section}{\numberline {1.1}本稿の目的}{2}
-\contentsline {section}{\numberline {1.2}ルール}{2}
-\contentsline {section}{\numberline {1.3}索引の書き方}{2}
-\contentsline {section}{\numberline {1.4} C/C++からgnuplotを呼び出す}{2}
-\contentsline {subsection}{\numberline {1.4.1} Linuxでの方法}{2}
-\contentsline {subsubsection}{ 説明}{3}
-\contentsline {subsection}{\numberline {1.4.2} Windowsでの場合}{3}
-\contentsline {chapter}{\numberline {第2章}線形方程式}{4}
-\contentsline {section}{\numberline {2.1}線形方程式の解法の種類}{4}
-\contentsline {chapter}{\numberline {第3章}常微分方程式の数値計算}{5}
-\contentsline {section}{\numberline {3.1}問題設定}{5}
-\contentsline {subsection}{\numberline {3.1.1}Runge-Kutta法}{5}
-\contentsline {chapter}{\numberline {第4章}偏微分方程式の差分法}{6}
-\contentsline {section}{\numberline {4.1}Poisson方程式}{6}
-\contentsline {section}{\numberline {4.2}熱方程式}{6}
-\contentsline {subsection}{\numberline {4.2.1} 1次元の問題}{6}
-\contentsline {subsubsection}{陽解法}{6}
-\contentsline {subsubsection}{陰解法}{7}
-\contentsline {subsection}{\numberline {4.2.2}2次元の問題}{7}
-\contentsline {subsection}{\numberline {4.2.3}問題}{7}
-\contentsline {section}{\numberline {4.3}波動方程式}{7}
-\contentsline {subsection}{\numberline {4.3.1} 1次元の問題}{7}
-\contentsline {subsubsection}{陽解法}{7}
-\contentsline {subsection}{\numberline {4.3.2}2次元の問題}{8}
-\contentsline {subsubsection}{陽解法}{8}
-\contentsline {subsection}{\numberline {4.3.3}問題}{8}
-\contentsline {section}{\numberline {4.4}移流方程式}{8}
-\contentsline {subsection}{\numberline {4.4.1}離散化}{8}
-\contentsline {subsection}{\numberline {4.4.2}移流拡散方程式}{8}
-\contentsline {subsection}{\numberline {4.4.3}問題}{9}
-\contentsline {chapter}{参考文献}{10}
-\contentsline {chapter}{\numberline {第5章}偏微分方程式の有限要素法}{11}
-\contentsline {chapter}{\numberline {第6章}その他の偏微分方程式}{12}
-\contentsline {section}{\numberline {6.1}Hamilton-Jacobi方程式}{12}
-\contentsline {section}{\numberline {6.2}自由境界問題}{12}
-\contentsline {section}{\numberline {6.3}Navier-Stokes方程式}{12}
-\contentsline {chapter}{\numberline {第7章}モンテカルロシミュレーション}{13}
-\contentsline {chapter}{\numberline {第8章}セルオートマトン}{14}
+\contentsline {chapter}{\numberline {第1章}本稿に関して}{2}{chapter.1}
+\contentsline {section}{\numberline {1.1}本稿の目的}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}ルール}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}\TeX }{2}{section.1.3}
+\contentsline {section}{\numberline {1.4}事前準備}{2}{section.1.4}
+\contentsline {chapter}{\numberline {第2章}線型方程式}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}線形方程式の解法の種類}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}直接法}{3}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Gaussの消去法}{3}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}LU分解}{3}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}反復法}{3}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Jacobi法}{4}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Gauss-Seidel法}{4}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}SOR法}{4}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Krylov部分空間法}{4}{subsection.2.3.4}
+\contentsline {chapter}{\numberline {第3章}常微分方程式の数値計算}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}問題設定}{5}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Runge-Kutta法}{5}{subsection.3.1.1}
+\contentsline {chapter}{\numberline {第4章}偏微分方程式の差分法}{6}{chapter.4}
+\contentsline {section}{\numberline {4.1}Poisson方程式}{6}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}1次元の問題}{6}{subsection.4.1.1}
+\contentsline {subsubsection}{周期境界}{7}{subsubsection*.2}
+\contentsline {subsubsection}{Dirichlet問題}{7}{subsubsection*.3}
+\contentsline {subsubsection}{Neumann問題}{7}{subsubsection*.4}
+\contentsline {subsection}{\numberline {4.1.2}2次元の問題}{7}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}熱方程式}{8}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1} 1次元の問題}{8}{subsection.4.2.1}
+\contentsline {subsubsection}{Cauchy-Dirichlet問題}{9}{subsubsection*.5}
+\contentsline {subsubsection}{Cauchy-Neumann問題}{9}{subsubsection*.6}
+\contentsline {subsection}{\numberline {4.2.2}2次元の問題}{10}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}問題}{10}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}波動方程式}{10}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1} 1次元の問題}{10}{subsection.4.3.1}
+\contentsline {subsubsection}{Cauchy-Dirichlet問題}{11}{subsubsection*.7}
+\contentsline {subsubsection}{Cauchy-Neumann問題}{11}{subsubsection*.8}
+\contentsline {subsection}{\numberline {4.3.2}2次元の問題}{11}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}問題}{11}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}移流方程式}{11}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}離散化}{11}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}移流拡散方程式}{11}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}問題}{11}{subsection.4.4.3}
+\contentsline {section}{\numberline {4.5}アニメーション}{12}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1} C/C++からgnuplotを呼び出す}{12}{subsection.4.5.1}
+\contentsline {subsubsection}{ Linuxでの方法}{12}{subsubsection*.9}
+\contentsline {subsubsection}{ Windowsでの場合}{12}{subsubsection*.10}
+\contentsline {chapter}{参考文献}{14}{chapter*.11}
+\contentsline {chapter}{\numberline {第5章}偏微分方程式の有限要素法}{15}{chapter.5}
+\contentsline {chapter}{\numberline {第6章}その他の偏微分方程式}{16}{chapter.6}
+\contentsline {section}{\numberline {6.1}Hamilton-Jacobi方程式}{16}{section.6.1}
+\contentsline {section}{\numberline {6.2}自由境界問題}{16}{section.6.2}
+\contentsline {section}{\numberline {6.3}Navier-Stokes方程式}{16}{section.6.3}
+\contentsline {chapter}{\numberline {第7章}モンテカルロシミュレーション}{17}{chapter.7}
+\contentsline {chapter}{\numberline {第8章}セルオートマトン}{18}{chapter.8}

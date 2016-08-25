@@ -16,68 +16,10 @@
 
 
 
-\section{索引の書き方}
+\section{\TeX}
 
 索引はindex\index{インデックス}で可能．
 
-\section{ C/C++からgnuplotを呼び出す}
-C/C++でプログラムを組んでいる場合に，ソースコード内にgnuplotを呼び出すコマンドを記述しておけば，いちいち実行とは別にgnuplotを開いて実行データのプロットを行う手間が省ける．
 
-\subsection{ Linuxでの方法}
-Linuxで作成中の場合，\texttt{popen}関数\footnote{外部コマンドをプログラム内で使用できる一つの関数．終わりには\texttt{pclose}関数で閉じないといけない．}でgnuplotを呼び出すことができる．
-\begin{lstlisting}[caption=C++のコード内からgnuplotを呼び出し$\sin x$を描く]
-#include <iostream>
-#include <cstdio>
-using namespace std;
+\section{事前準備}
 
-int main()
-{
-	FILE *fp = popen("gnuplot", "w");
-	if (fp == NULL){
-		return 1;
-	}
-	fputs("set mouse\n", fp);
-	fputs("plot sin(x)\n", fp);
-	fflush(fp);
-	cin.get();
-	pclose(fp);
-	return 0;
-}
-\end{lstlisting}
-
-\subsubsection{ 説明}
-\textbf{1-3行目:}
-\texttt{iostream}は読み込みや書き出しを行う関数が入っているライブラリ．C言語での\texttt{stdio.h}に対応している．また，\texttt{cstdio}はFILEポインタや\texttt{fputs}関数などが入っているライブラリである．
-3行目は名前空間の宣言であるが無視して構わない．
-
-\textbf{7行目:}
-FILE型でfpというファイルを用意する．そこに，\texttt{popen}関数を用いてgnuplotと書き込む(\texttt{"w"})．記号\texttt{*}はポインタを表すが別の記事を参照せよ．
-
-\textbf{8-17行目:}
-もしfpが確保できないならそこでお終い．確保できるなら，\texttt{fputs}関数で( )内の文字列をfpに書き出す．
-一つ目はマウスで操作できるようにする宣言文で，二つ目は$\sin x$をプロットする宣言文である．
-\texttt{fflush}関数によりFILEポインタfpのバッファに格納されているデータを吐き出させる．
-最後に\texttt{pclose}でfpを閉じれば良い．
-
-
-\subsection{ Windowsでの場合}
-Windows (Visual C++)を使う場合は，マウスが自動的に有効になっているので宣言する必要はない．また，\texttt{popen}関数と\texttt{pclos}関数の代わりに\texttt{\_popen}関数と\texttt{\_pclose}関数を使う．
-\begin{lstlisting}[caption=Visual C++のコード内からgnuplotを呼び出し$\sin x$を描く]
-#include <iostream>
-#include <cstdio>
-using namespace std;
-
-int main()
-{
-	FILE *fp = _popen("pgnuplot.exe", "w");
-	if (fp == NULL){
-		return 1;
-	}else{
-		fputs("plot sin(x)\n", fp);
-		fflush(fp);
-		cin.get();
-		_pclose(fp);
-		return 0;
-	}
-}
-\end{lstlisting}

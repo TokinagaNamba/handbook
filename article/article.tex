@@ -11,7 +11,21 @@
 \usepackage{ulem}						% いろいろな下線を書く
 %\usepackage{ascmac}				% 複数行にわたる文章を囲む
 %\usepackage{makeidx}				% 索引の作成
-%\usepackage{picture}				% 作画用
+\usepackage{picture}					% 作画用
+\usepackage[dvipdfmx]{hyperref}     % ハイパーリンク
+\usepackage{pxjahyper}				% 文字化け防止
+\hypersetup{							% hyperrefオプションリスト
+ setpagesize=false,
+ bookmarks=true,
+ bookmarksnumbered=true,
+ bookmarksopen=true,
+ colorlinks=true,
+ anchorcolor=black,
+ linkcolor=blue,
+ citecolor=green,
+ filecolor=magenta,
+ urlcolor=cyan
+}
 
 %% マージンの設定 %%
 \setlength{\textwidth}{\fullwidth}
@@ -105,6 +119,8 @@
 \DeclareMathOperator{\divergence}{\mathrm{div}\,}  %texでは\divは割算の記号
 \DeclareMathOperator{\grad}{\mathrm{grad}\,}
 \DeclareMathOperator{\rot}{\mathrm{rot}\,}
+\DeclareMathOperator{\diag}{\mathrm{diag}\,}
+\def\hsymb#1{\mbox{\strut\rlap{\smash{\Huge$#1$}}\quad}}
 
 %============= macro end =============%
 

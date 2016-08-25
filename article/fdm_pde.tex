@@ -14,6 +14,153 @@
 \end{equation}
 と記述される．
 
+\subsection{1次元の問題}
+まず，1次元の場合($\Omega=(0,1)$)について考えてみる．一般の区間への拡張は容易である．
+\begin{figure}[h]
+	\begin{center}
+		\begin{picture}(300,40)
+     	\put(2,25){\line(1,0){182}}
+		\put(240,25){\line(1,0){60}}
+		\multiput(184,25)(7,0){10}{\line(1,0){3}}
+		\multiput(2,25)(30,0){7}{\circle*{4}}
+		\multiput(242,25)(30,0){3}{\circle*{4}}
+		\put(0,10){$0$}
+		\put(300,10){$1$}
+		\put(0,30){$i=0$}
+		\put(30,30){$1$}
+		\put(59,30){$2$}
+		\put(89,30){$3$}
+		\put(119,30){$4$}
+		\put(146,30){$\cdots$}
+		\put(230,30){$n-2$}
+		\put(260,30){$n-1$}
+		\put(300,30){$n$}
+      \end{picture}
+      \caption{空間分割のイメージ($n$等分割した場合; $h=1/n$)}
+    \end{center}
+  \end{figure}
+  
+\eqref{e:poisson}は\uwave{2階の中心差分}を通して
+$$
+-\frac{u_{i-1}-2u_i+u_{i+1}}{h^2}=f_i\quad(i=1,\cdots,n-1),
+$$
+と離散化される．
+ただし，$f_i=f(x_i)$である．
+また，これは
+\begin{equation}
+\bm{A}=\left[\begin{array}{ccccc}
+	2&-1&&&\\
+	-1&2&-1&&\hsymb{\bm{0}}\\
+	&\ddots&\ddots&\ddots&\\
+	\hsymb{\bm{0}}&&-1&2&-1\\
+	&&&-1&2
+	\end{array}\right],\quad
+\bm{u}=\left[\begin{array}{c}
+	u_1\\
+	u_2\\
+	\vdots\\
+	u_{n-1}
+	\end{array}\right],\quad
+\bm{u}_b=\left[\begin{array}{c}
+	-u_0\\
+	0\\
+	\vdots\\
+	0\\
+	-u_{n}
+	\end{array}\right],\quad
+\bm{f}=\left[\begin{array}{c}
+	h^2 f_1\\
+	h^2 f_2\\
+	\vdots\\
+	h^2 f_{n-1}
+	\end{array}\right]	
+\end{equation}
+と定義することにより，線型方程式
+\begin{equation}
+\label{e:poissonlinearequation}
+\bm{A}\bm{u}+\bm{u}_{b}=\bm{f}
+\end{equation}
+に書き換えられる．
+ここで，$\bm{u}_b$は境界条件から決まる．
+
+\subsubsection{周期境界}
+周期境界条件
+\begin{equation}
+\label{e:1dperiodic}
+u(0)=u(1)
+\end{equation}
+を仮定する．
+
+\subsubsection{Dirichlet問題}
+Dirichlet境界値
+\begin{equation}
+\label{e:1dstationarydirichlet}
+u(0)=a,\quad u(1)=b\quad(a,b\in\mathbb{R})
+\end{equation}
+を仮定すれば，$u_0=a$かつ$u_{n}=b$である．
+したがって，\eqref{e:poissonlinearequation}は
+$$
+\bm{A}\bm{u}=\bm{f}_D
+$$
+へと簡約化される．なお，
+\begin{equation*}
+\bm{f}_D=\left[\begin{array}{c}
+	h^2 f_1+a\\
+	h^2 f_2\\
+	\vdots\\
+	h^2 f_{n-2}\\
+	h^2 f_{n-1}+b
+	\end{array}\right]	
+\end{equation*}
+である．
+
+\subsubsection{Neumann問題}
+Neumann境界値
+\begin{equation}
+\label{e:1dstationaryneumann}
+u'(0)=a,\quad u'(1)=b\quad(a,b\in\mathbb{R})
+\end{equation}
+を仮定してみる．これらを
+$$
+\frac{u_1-u_0}{h}=a,\quad \frac{u_{n}-u_{n-1}}{h}=b
+$$
+と近似すれば，$u_0=u_1-ah$と$u_{n}=u_{n-1}-bh$であるので，\eqref{e:poissonlinearequation}は
+$$
+\bm{A}_N\bm{u}=\bm{f}_N
+$$
+と簡約化される．ただし，
+\begin{equation}
+\bm{A}_N=\left[\begin{array}{ccccc}
+	1&-1&&&\\
+	-1&2&-1&&\hsymb{\bm{0}}\\
+	&\ddots&\ddots&\ddots&\\
+	\hsymb{\bm{0}}&&-1&2&-1\\
+	&&&-1&1
+	\end{array}\right],\quad
+\bm{f}_N=\left[\begin{array}{c}
+	h^2 f_1-ah\\
+	h^2 f_2\\
+	\vdots\\
+	h^2 f_{n-2}\\
+	h^2 f_{n-1}-bh
+	\end{array}\right]
+\end{equation}
+である．
+
+\subsection{2次元の問題}
+次に，2次元の場合を考えてみる．領域は簡単のため，正方形\footnote{矩型(くけい)領域の厳密な定義はなんでしょうかね？}($\Omega=(0,1)\times(0,1)$)とする．
+長方形などへの一般化は容易である．
+
+\eqref{e:poisson}は，より具体的には
+$$
+-\frac{\partial^2u}{\partial x^2}-\frac{\partial^2u}{\partial y^2}=f(x,y)
+$$
+と書けている．
+$x$方向と$y$方向それぞれに\uwave{2階の中心差分}を適用すれば
+$$
+-\frac{u_{i-1,j}-2u_{i,j}+u_{i+1,j}}{h_x^2}-\frac{u_{i,j-1}-2u_{i,j}+u_{i,j+1}}{h_y^2}=f_{i,j}
+$$
+と離散化できる．
 %
 %\subsection{Helmholtz方程式}
 %Helmholtz方程式
@@ -31,47 +178,188 @@
 \label{e:heat}
 \partial_t u(t,x)-c\Delta u(t,x)=f(t,x)\quad(t>0,\ x\in\Omega)
 \end{equation}
-と記述される．ここで，$\Omega$は$\mathbb{R}^d$の単連結な領域であり，$c>0$は拡散係数(または粘性係数)と呼ばれる(今回は)定数である．
+と記述される．ここで，$c>0$は拡散係数(または粘性係数)と呼ばれる(今回は)定数である．
 
 
 \subsection{ 1次元の問題}
-ここでは，$\Omega=(0,1)$とし
+1次元の場合($\Omega=(0,1)$)を考える．
+\begin{figure}[h]
+	\begin{center}
+		\begin{picture}(260,240)
+		%yokosen
+		\multiput(30,10)(0,30){5}{\line(1,0){120}}
+		\multiput(30,180)(0,30){3}{\line(1,0){120}}
+		\multiput(200,10)(0,30){5}{\line(1,0){60}}
+		\multiput(200,180)(0,30){3}{\line(1,0){60}}
+		%tatesen
+		\multiput(30,10)(30,0){5}{\line(0,1){120}}
+		\multiput(30,180)(30,0){5}{\line(0,1){60}}
+		\multiput(200,10)(30,0){3}{\line(0,1){120}}
+		\multiput(200,180)(30,0){3}{\line(0,1){60}}
+		%dotyokosen
+		\multiput(150,10)(7,0){7}{\line(1,0){3}}
+		\multiput(150,40)(7,0){7}{\line(1,0){3}}
+		\multiput(150,70)(7,0){7}{\line(1,0){3}}
+		\multiput(150,100)(7,0){7}{\line(1,0){3}}
+		\multiput(150,130)(7,0){7}{\line(1,0){3}}
+		\multiput(150,180)(7,0){7}{\line(1,0){3}}
+		\multiput(150,210)(7,0){7}{\line(1,0){3}}
+		\multiput(150,240)(7,0){7}{\line(1,0){3}}
+		%dottatesen
+		\multiput(30,130)(0,7){7}{\line(0,1){3}}
+		\multiput(60,130)(0,7){7}{\line(0,1){3}}
+		\multiput(90,130)(0,7){7}{\line(0,1){3}}
+		\multiput(120,130)(0,7){7}{\line(0,1){3}}
+		\multiput(150,130)(0,7){7}{\line(0,1){3}}
+		\multiput(200,130)(0,7){7}{\line(0,1){3}}
+		\multiput(230,130)(0,7){7}{\line(0,1){3}}
+		\multiput(260,130)(0,7){7}{\line(0,1){3}}
+		%text
+		\put(25,0){$i=0$}\put(58,0){$1$}\put(88,0){$2$}\put(118,0){$3$}\put(145,0){$\cdots$}\put(190,0){$n-2$}\put(220,0){$n-1$}\put(260,0){$n$}
+		\put(0,8){$k=0$}\put(18,36){$1$}\put(18,66){$2$}\put(18,96){$3$}\put(18,126){$\vdots$}\put(0,180){$m-2$}\put(0,210){$m-1$}\put(18,240){$m$}
+		%dot
+		\put(90,100){\color{red}{\circle*{4}}}
+		\put(60,70){\color{blue}{\circle*{4}}}\put(90,70){\color{blue}{\circle*{4}}}\put(120,70){\color{blue}{\circle*{4}}}
+		\thicklines
+		\put(62,72){\vector(1,1){24}}\put(118,72){\vector(-1,1){24}}\put(90,72){\vector(0,1){24}}
+      \end{picture}
+      \caption{時空間分割のイメージ(空間方向に$n$等分割，時間方向に$m$等分割した場合; $h_x=1/n$, $h_t=t_{max}/m$)}
+    \end{center}
+  \end{figure}
+
+
+
+
+
+
+まず，空間に関して\uwave{2階の中心差分}を適用すれば
 \begin{equation}
+\frac{du_i(t)}{dt}-c\frac{u_{i-1}(t)+2u_i(t)-u_{i+1}(t)}{h_x^2}=f_i(t)\quad(t>0,\ i=1,\cdots,n-1)
+\end{equation}
+を得る．\footnote{このような離散化を(空間方向への)半離散化と呼ぶ．対して，空間方向・時間方向ともに離散化することを全離散化と呼ぶこともある．}
+さらに，\uwave{前進差分}を適用することで
+\begin{align}
+&\frac{u^{k+1}_{i}-u^{k}_{i}}{h_t}-c\frac{u^{k}_{i-1}-2u^{k}_{i}+u^{k}_{i+1}}{h_x^{2}}=f_i^k\nonumber\\
+\Leftrightarrow&\ u_i^{k+1}=\lambda u_{i-1}^k+(1-2\lambda)u_i^k+\lambda u_{i+1}^k+h_t f_i^k\quad(i=1,\cdots,n-1,\ k=0,\cdots,m-1)\label{e:1dheat}
+\end{align}
+が導出される．ここで，$\lambda:=ch_t/h_x^{2}$である．もし
+\begin{equation}
+\bm{A}=\left[\begin{array}{ccccc}
+	1-2\lambda&\lambda&&&\\
+	\lambda&1-2\lambda&\lambda&&\hsymb{\bm{0}}\\
+	&\ddots&\ddots&\ddots&\\
+	\hsymb{\bm{0}}&&\lambda&1-2\lambda&\lambda\\
+	&&&\lambda&1-2\lambda
+	\end{array}\right],\quad
+\bm{u}^k=\left[\begin{array}{c}
+	u_1^k\\
+	u_2^k\\
+	\vdots\\
+	u_{n-1}^k
+	\end{array}\right],\quad
+\bm{u}_b^k=\left[\begin{array}{c}
+	\lambda u_0^k\\
+	0\\
+	\vdots\\
+	0\\
+	\lambda u_{n}^k
+	\end{array}\right],\quad
+\bm{f}^k=\left[\begin{array}{c}
+	h_t f_1^k\\
+	h_t f_2^k\\
+	\vdots\\
+	h_t f_{n-1}^k
+	\end{array}\right]	
+\end{equation}
+を導入するならば，\eqref{e:1dheat}は
+$$
+\bm{u}^{k+1}=\bm{A}\bm{u}^k + \bm{u}_b^k+ \bm{f}^k\quad(k=0,\cdots,m-1)
+$$
+と書くこともできる．
+初期条件が
+\begin{equation}
+\label{e:1dinitial}
 u(0,x)=g(x)\quad(0\le x\le1)
 \end{equation}
-及びDirichlet境界条件
+と与えられたとすれば，$u_i^0=g_i$すなわち$\bm{u}^0=\bm{g}$であるので，結局
 \begin{equation}
+\label{e:1ddiscreteheat}
+	\begin{cases}
+		\bm{u}^{k+1}=\bm{A}\bm{u}^k + \bm{u}_b^k+ \bm{f}^k\quad(k=0,\cdots,m-1)&\\
+		\bm{u}^0=\bm{g}&
+	\end{cases}
+\end{equation}
+が得られる．
+
+\subsubsection{Cauchy-Dirichlet問題}
+Dirichlet境界条件
+\begin{equation}
+\label{e:1ddirichlet}
 u(t,0)=a(t),\quad u(t,1)=b(t)\quad(t\ge0)
 \end{equation}
 を仮定する．
-ここで，$g:[0,1]\to\mathbb{R}$及び$a,b:[0,\infty)\to\mathbb{R}$は与えられた関数で，両立条件として$g(0)=a(0)$と$g(1)=b(0)$を満たすと仮定する．
-
-\subsubsection{陽解法}
-時間分割数を$N_t$で空間分割数を$N_x$とする．
-
-内部の方程式を，空間に関して\uwave{2階中心差分}，時間に関して\uwave{前進差分}による近似を行うと
+ただし，$a,b:[0,\infty)\to\mathbb{R}$は両立条件として$g(0)=a(0)$と$g(1)=b(0)$を満たすと仮定する．
+\eqref{e:1ddirichlet}から$u_0^k=a^k$と$u_{n}^k=b^k$を得るので，\eqref{e:1ddiscreteheat}は
 \begin{equation}
-\label{e:heat1d}
-\frac{u^{n+1}_{i}-u^{n}_{i}}{h_t}-c\frac{u^{n}_{i+1}-2u^{n}_{i}+u^{n}_{i-1}}{h_x^{2}}=f_i^n
+	\begin{cases}
+		\bm{u}^{k+1}=\bm{A}\bm{u}^k + \bm{f}_D^k\quad(k=0,\cdots,m-1)&\\
+		\bm{u}^0=\bm{g}&
+	\end{cases}
 \end{equation}
-を得る．ただし，$u_i^n:=u(nh_t,ih_x)$かつ$f_i^n:=f(nh_t,ih_x)$としている．(離散)方程式\eqref{e:heat1d}は
+となる．ここで，
+\begin{equation}
+\bm{f}_D^k=\left[\begin{array}{c}
+	h_tf_1^k+\lambda a^k\\
+	h_t f_2^k\\
+	\vdots\\
+	h_t f_{n-2}^k\\
+	h_t f_{n-1}^k + \lambda b^k
+	\end{array}\right]
+\end{equation}
+
+\subsubsection{Cauchy-Neumann問題}
+Neumann境界条件
+\begin{equation}
+\label{e:1dneumann}
+u_x(t,0)=a(t),\quad u_x(t,1)=b(t)\quad(t\ge0)
+\end{equation}
+の場合は，
 $$
-u^{n+1}_{i}=\lambda u^{n}_{i+1}+(1-2\lambda)u^{n}_{i}+\lambda u^{n}_{i-1}
+\frac{u_1^k-u_0^k}{h_x}=a^k,\quad \frac{u_{n}^k-u_{n-1}^k}{h_x}=b^k
 $$
-と書き換えられる．ここで，$\lambda:=ch_t/h_x^{2}$である．
-
-
-\subsubsection{陰解法}
-
+と近似すれば，$u_0^k=u_1^k-a^kh_x$と$u_{n+1}^k=u_n^k-b^kh_x$であるので，\eqref{e:1ddiscreteheat}は
+\begin{equation}
+	\begin{cases}
+		\bm{u}^{k+1}=\bm{A}_N\bm{u}^k + \bm{f}_N^k\quad(k=0,\cdots,m-1)&\\
+		\bm{u}^0=\bm{g}&
+	\end{cases}
+\end{equation}
+となる．ここで，
+\begin{equation}
+\bm{A}_N=\left[\begin{array}{ccccc}
+	1-\lambda&\lambda&&&\\
+	\lambda&1-2\lambda&\lambda&&\hsymb{\bm{0}}\\
+	&\ddots&\ddots&\ddots&\\
+	\hsymb{\bm{0}}&&\lambda&1-2\lambda&\lambda\\
+	&&&\lambda&1-\lambda
+	\end{array}\right],\quad
+\bm{f}^k_N=\left[\begin{array}{c}
+	h_t f_1^k-h_t a^k\\
+	h_t f_2^k\\
+	\vdots\\
+	h_t f_{n-1}^k\\
+	h_t f_{n}^k -h_t b^k
+	\end{array}\right]	
+\end{equation}
+である．
 
 \subsection{2次元の問題}
 
 
 
 \subsection{問題}
-すぐに思い浮かぶ問題としては例えば次がある．
 \begin{itemize}
-\item Neumann境界条件を課した場合はどうなるか．
+\item 他のスキームを用いた場合はどうなるか．
 \item 拡散係数が定数でない場合，すなわち
 $$
 u_t(t,x)-\divergence(c(t,x)\nabla u(t,x))=f(t,x)\quad(t>0,\ x\in\Omega)
@@ -90,70 +378,81 @@ $$
 線形の波動方程式は
 \begin{equation}
 \label{e:wave}
-u_{tt}u(t,x)-c^2\Delta u(t,x)=f(t,x)\quad(t>0,\ x\in\Omega)
+u_{tt}(t,x)-c^2\Delta u(t,x)=f(t,x)\quad(t>0,\ x\in\Omega)
 \end{equation}
 と記述される．
 
 
 \subsection{ 1次元の問題}
+1次元($\Omega=(0,1)$)の場合について考えてみる．
+空間方向に\uwave{2階の中心差分}を適用すると
+$$
+\frac{d^2u_i(t)}{dt^2}-c^{2}\frac{u_{i-1}(t)-2u_{i}(t)+u_{i+1}(t)}{h_x^{2}}=f_i(t)\quad(t>0,\ i=1,\cdots,n-1)
+$$
+と半離散化される．
+さらに，時間方向にも\uwave{2階の中心差分}を適用すると
+\begin{align}
+&\frac{u_i^{k-1}-2u_i^k+u_i^{k+1}}{h_t^2}-c^{2}\frac{u_{i-1}^k-2u_{i}^k+u_{i+1}^k}{h_x^{2}}=f_i^k\nonumber\\
+\Leftrightarrow&\ u^{k+1}_i=\lambda u^k_{i-1}+2(1-\lambda)u^k_{i}+\lambda u^k_{i+1}-u^{k-1}_i+h_t^2f_i^k\quad(i=1,\cdots,n-1,\ k=1,\cdots,m-1)\label{e:1dwave}
+\end{align}
+を得る．ここで，$\lambda:=ch_t^2/h_x^2$.
+もし
+\begin{equation}
+\bm{A}=\left[\begin{array}{ccccc}
+	2(1-\lambda)&\lambda&&&\\
+	\lambda&2(1-\lambda)&\lambda&&\hsymb{\bm{0}}\\
+	&\ddots&\ddots&\ddots&\\
+	\hsymb{\bm{0}}&&\lambda&2(1-\lambda)&\lambda\\
+	&&&\lambda&2(1-\lambda)
+	\end{array}\right],\quad
+\bm{u}^k=\left[\begin{array}{c}
+	u_1^k\\
+	u_2^k\\
+	\vdots\\
+	u_{n-1}^k
+	\end{array}\right],\quad
+\bm{u}_b^k=\left[\begin{array}{c}
+	\lambda u_0^k\\
+	0\\
+	\vdots\\
+	0\\
+	\lambda u_{n}^k
+	\end{array}\right],\quad
+\bm{f}^k=\left[\begin{array}{c}
+	h_t^2 f_1^k\\
+	h_t^2 f_2^k\\
+	\vdots\\
+	h_t^2 f_{n-1}^k
+	\end{array}\right]	
+\end{equation}
+を導入するならば，\eqref{e:1dwave}は
+$$
+\bm{u}^{k+1} = \bm{A}\bm{u}^k + I\bm{u}^{k-1} + \bm{u}_b^k + \bm{f}^k\quad(k=1,\cdots,m-1)
+$$
+と行列表現できる．ここで，$I:=\diag[1,\cdots,1]$である．
 初期条件として
 \begin{equation}
-\label{e:waveinitial}
+\label{e:1dwaveinitial}
 u(0,x)=g_1(x),\quad u_t(0,x)=g_2(x)\quad(0\le x\le 1)
 \end{equation}
-及びDirichlet境界条件
+を仮定するなら，$u_i^0=(g_1)_i$と，$(u_i^1-u_i^0)/h_t=(g_2)_i$から$u_i^1=u_i^0+h_t(g_2)_i=(g_1)_i+h_t(g_2)_i$と求まるので，結局
 \begin{equation}
-\label{e:wave1ddirichlet}
-u(t,0)=a(t),\quad u(t,1)=b(t)\quad(t\ge0)
+	\begin{cases}
+		\bm{u}^{k+1} = \bm{A}\bm{u}^k + I\bm{u}^{k-1} + \bm{u}_b^k + \bm{f}^k\quad&(k=1,\cdots,m-1)\\
+		\bm{u}^0=\bm{g}_1,\quad \bm{u}^1=\bm{g}_1+h_t\bm{g}_2&
+	\end{cases}
 \end{equation}
-を仮定する．
+を解くことになる．
 
-\subsubsection{陽解法}
-内部の方程式は，
-$$
-\frac{u^{n+1}_{i}-2u^{n}_{i}+u^{n-1}_{i}}{(\delta t)^{2}}-c^{2}\frac{u^{n}_{i+1}-2u^{n}_{i}+u^{n}_{i-1}}{(\delta x)^{2}}=f
-$$
-すなわち，
-$$
-u^{n+1}_{i}=\lambda u^{n}_{i+1}+2(1-\lambda)u^{n}_{i}+\lambda u^{n}_{i-1}-u^{n-1}_{i}
-$$
-と分解される．ここで，$\lambda:=(c\delta t/\delta x)^{2}$.
+\subsubsection{Cauchy-Dirichlet問題}
+Dirichlet境界条件\eqref{e:1ddirichlet}を仮定する．
 
-初期条件は，$u^{0}_{i}=\Phi_{i}$及び
-$$
-u(\delta t,x)\simeq u(0,x)+\delta t\partial_{t}u(0,x)+\frac{(\delta t)^{2}}{2}\partial_{tt}u(0,x)
-$$
-より
-$$
-u^{1}_{i}=\Phi_{i}+\Psi_{i}\delta t+\frac{\lambda}{2}(\Phi_{i+1}-2\Phi_{i}+\Phi_{i-1})
-$$
-で決まる．ここで，$\Phi_{i}:=\phi(x_i)$及び$\Psi_{i}:=\psi(x_i)$である．なお，境界条件は$u^{n}_{0}=u^{n}_{N}=0$で決まる．
+\subsubsection{Cauchy-Neumann問題}
 
 \subsection{2次元の問題}
-正方領域$\Omega=(0,1)\times(0,1)$上の波動方程式\eqref{e:wave}-\eqref{e:waveinitial}に対するDirichlet境界値問題(固定境界値問題)
-\begin{equation}
-\label{e:wavedirichlet}
-u(t,x)=a(t,x)\quad(t\ge0,\ x\in\partial\Omega)
-\end{equation}
-を考える．
-
-
-\subsubsection{陽解法}
-
-
-内部の方程式は
-$$
-\frac{u^{n+1}_{i,j}-2u^{n}_{i,j}+u^{n-1}_{i,j}}{(h_{t})^{2}}-c^{2}\left(\frac{u^{n}_{i+1,j}-2u^{n}_{i,j}+u^{n}_{i-1,j}}{(h_x)^{2}}+\frac{u^{n}_{i,j+1}-2u^{n}_{i,j}+u^{n}_{i,j-1}}{(h_y)^{2}}\right)=0
-$$
-すなわち，
-$$
-f
-$$
 
 \subsection{問題}
-すぐに思い浮かぶ問題としては例えば次がある．
 \begin{itemize}
-\item Neumann境界条件を課した場合はどうなるか．
 \item 拡散係数が定数でない場合，すなわち
 $$
 u_{tt}(t,x)-\divergence(c(t,x)\nabla u(t,x))=f(t,x)\quad(t>0,\ x\in\Omega)
@@ -208,8 +507,79 @@ $$
 
 
 
+
+
+
+
+
+
+\section{アニメーション}
+計算結果の可視化にはいくつか方法があるようだが，ここではアニメーションによる可視化について説明する．
+\subsection{ C/C++からgnuplotを呼び出す}
+C/C++でプログラムを組んでいる場合に，ソースコード内にgnuplotを呼び出すコマンドを記述しておけば，いちいち実行とは別にgnuplotを開いて実行データのプロットを行う手間が省ける．
+
+\subsubsection{ Linuxでの方法}
+Linuxで作成中の場合，\texttt{popen}関数\footnote{外部コマンドをプログラム内で使用できる一つの関数．終わりには\texttt{pclose}関数で閉じないといけない．}でgnuplotを呼び出すことができる．
+\begin{lstlisting}[caption=C++のコード内からgnuplotを呼び出し$\sin x$を描く]
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main()
+{
+	FILE *fp = popen("gnuplot", "w");
+	if (fp == NULL){
+		return 1;
+	}
+	fputs("set mouse\n", fp);
+	fputs("plot sin(x)\n", fp);
+	fflush(fp);
+	cin.get();
+	pclose(fp);
+	return 0;
+}
+\end{lstlisting}
+
+\textbf{1-3行目:}
+\texttt{iostream}は読み込みや書き出しを行う関数が入っているライブラリ．C言語での\texttt{stdio.h}に対応している．また，\texttt{cstdio}はFILEポインタや\texttt{fputs}関数などが入っているライブラリである．
+3行目は名前空間の宣言であるが無視して構わない．
+
+\textbf{7行目:}
+FILE型でfpというファイルを用意する．そこに，\texttt{popen}関数を用いてgnuplotと書き込む(\texttt{"w"})．記号\texttt{*}はポインタを表すが別の記事を参照せよ．
+
+\textbf{8-17行目:}
+もしfpが確保できないならそこでお終い．確保できるなら，\texttt{fputs}関数で( )内の文字列をfpに書き出す．
+一つ目はマウスで操作できるようにする宣言文で，二つ目は$\sin x$をプロットする宣言文である．
+\texttt{fflush}関数によりFILEポインタfpのバッファに格納されているデータを吐き出させる．
+最後に\texttt{pclose}でfpを閉じれば良い．
+
+
+\subsubsection{ Windowsでの場合}
+Windows (Visual C++)を使う場合は，マウスが自動的に有効になっているので宣言する必要はない．また，\texttt{popen}関数と\texttt{pclos}関数の代わりに\texttt{\_popen}関数と\texttt{\_pclose}関数を使う．
+\begin{lstlisting}[caption=Visual C++のコード内からgnuplotを呼び出し$\sin x$を描く]
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main()
+{
+	FILE *fp = _popen("pgnuplot.exe", "w");
+	if (fp == NULL){
+		return 1;
+	}else{
+		fputs("plot sin(x)\n", fp);
+		fflush(fp);
+		cin.get();
+		_pclose(fp);
+		return 0;
+	}
+}
+\end{lstlisting}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{99}
-  \bibitem{evans} L.~C.~Evans, \emph{Partial Differential Equations}, Partial Differential Equations, in the series Graduate studies in mathematics,
+  \bibitem{evans} L.~C.~Evans, \emph{Partial Differential Equations}, in the series Graduate studies in mathematics,
 Second Edition v. 19, American Math. Society, 2010.
   \end{thebibliography}
