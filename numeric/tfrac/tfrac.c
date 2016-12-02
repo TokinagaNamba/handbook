@@ -3,12 +3,15 @@
 
 #define N 100
 
+double p(double t) {
+	return 1;
+}
 double f(double t) {
 	return 1;
 }
 int main() {
 	int i, j;
-	// \partial_t^\alpha u = 1 in (0, 2), f(0) = 0;
+	// \partial_t^\alpha u+p u = f in (0, 2), f(0) = 0;
 	// u(t) = t^\alpha/\Gamma(1 + \alpha)
 	// Lin, Y., & Xu, C. (2007). Finite difference/spectral approximations for the time-fractional diffusion equation. J. Comput. Phys., 225(2), 1533–1552. article. http://doi.org/10.1016/j.jcp.2007.02.001
 	// double a = tgamma(alpha);
@@ -32,7 +35,7 @@ int main() {
 			a += (b[j] - b[j + 1]) * u[i - 1 - j];
 		}
 		a += b[i - 1] * u[0];
-		a += alpha0 * f(i * h);
+		a += alpha0 * f(i * h) - p(i * h) * u[i - 1];
 		u[i] = a;
 	}
 	for (i = 0; i <= N; i++) {
